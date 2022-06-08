@@ -67,6 +67,7 @@ E
     | E '/' E  {$$=Number($1) / Number($3);}
     | E '*' E  {$$=Number($1) * Number($3);}
     | numero   {$$=$1;}
+    |   {console.log("vacio")}
 ;
 
 
