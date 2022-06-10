@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "jison" : "jison ./src/gramatica/gramatica.jison && mv gramatica.js ./src/gramatica"
+    "jison" : "jison ./src/gramatica/gramatica.jison && mv gramatica.js ./src/gramatica",
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "",

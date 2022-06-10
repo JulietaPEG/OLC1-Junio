@@ -1,9 +1,10 @@
 import { Instruccion } from "../abstract/instruccion";
 
-class Declaracion extends Instruccion {
+export class Declaracion extends Instruccion {
     constructor(
         public nombre: string,
         public tipo: string,
+        public expresion : any,
         line: number, 
         column : number
     ) {
@@ -12,6 +13,8 @@ class Declaracion extends Instruccion {
 
     public executar() {
         //codigo analisis semantico
+        console.log("Declarando nueva variable: "+ this.nombre);
+        
         
     }
 }

@@ -80,8 +80,8 @@ bool    "true"|"false"
 INIT: INSTRUCCIONES    EOF {return $1} ;
 
 
-INSTRUCCIONES :   INSTRUCCIONES INSTRUCCION { $1.push($2); $$=$2;}
-              |   INSTRUCCION               {$$=[$1]; }
+INSTRUCCIONES :   INSTRUCCIONES INSTRUCCION { $1.push($2); $$=$1;}
+              |   INSTRUCCION               { $$ = [$1] }
               ;
 
 

@@ -3,9 +3,19 @@ const fs = require("fs");
 
 try {
     const entrada = fs.readFileSync("src/entrada.txt");
-    parser.parse(entrada.toString());
-
+    const ast= parser.parse(entrada.toString());
+    
     //aqui analisis semantico
+
+    for (const elemento  of ast) {
+        try {
+            
+            elemento.executar()
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
     
     
 
