@@ -17,10 +17,12 @@ export class Declaracion extends Instruccion {
     public executar(env:Environment) {
         //codigo analisis semantico
         console.log("Declarando nueva variable: "+ this.nombre);
-        console.log(this);
+        //console.log(this);
 
 
         const expresion= this.expresion.executar(env);
+        console.log(expresion);
+        
 
         //preguntar si la variable esta libre
         //si los tipos son correctos o hacen match

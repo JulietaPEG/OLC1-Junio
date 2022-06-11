@@ -1,6 +1,6 @@
 
 
-var nuevaUno: string=5+5;
+var nuevaUno: string=5+5+1-3;
 var nuevaDos: string=5+5;
-var nuevaTres: string=5+5;
+var nuevaTres: string=50-5;
 
