@@ -1,3 +1,5 @@
+import { Environment } from "../symbols/enviroment";
+
 export abstract class Instruccion {
     
     constructor(
@@ -5,8 +7,8 @@ export abstract class Instruccion {
         public column: number
     ) {
         this.line= line;
-        this.column= column;
+        this.column= column+1 ;
     }
 
-    public abstract executar(): any
+    public abstract executar(env:Environment): any
 }
