@@ -1,3 +1,10 @@
+
+
+
+{
+
 var nuevaUno: string;
 var nuevaDos: string;
 var nuevaTres: string;
+
+}
