@@ -3,5 +3,5 @@
         "src"
     ],
     "ext" : "ts,txt",
-    "exec" : "clear && ts-node ./src/"
+    "exec" : "ts-node ./src/"
 }

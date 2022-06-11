@@ -72,12 +72,12 @@
   }
 */
 var gramatica = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,6],$V1=[1,7],$V2=[1,8],$V3=[5,9,10,11];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,6],$V1=[1,7],$V2=[1,8],$V3=[5,9,10,11],$V4=[1,20],$V5=[1,21],$V6=[1,22],$V7=[1,24],$V8=[1,25],$V9=[20,21,22,23,24],$Va=[20,23,24];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"INIT":3,"INSTRUCCIONES":4,"EOF":5,"INSTRUCCION":6,"DECLARACION":7,"TIPO_DECLARACION":8,"pr_const":9,"pr_let":10,"pr_var":11,"TIPODATO_DECLARACION":12,"pr_numero":13,"pr_bool":14,"pr_string":15,"id":16,":":17,";":18,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",9:"pr_const",10:"pr_let",11:"pr_var",13:"pr_numero",14:"pr_bool",15:"pr_string",16:"id",17:":",18:";"},
-productions_: [0,[3,2],[4,2],[4,1],[6,1],[8,1],[8,1],[8,1],[12,1],[12,1],[12,1],[7,5]],
+symbols_: {"error":2,"INIT":3,"INSTRUCCIONES":4,"EOF":5,"INSTRUCCION":6,"DECLARACION":7,"TIPO_DECLARACION":8,"pr_const":9,"pr_let":10,"pr_var":11,"TIPODATO_DECLARACION":12,"pr_numero":13,"pr_bool":14,"pr_string":15,"id":16,":":17,"=":18,"E":19,";":20,"+":21,"-":22,"*":23,"/":24,"F":25,"expreR_numero":26,"expreR_bool":27,"expreR_cadena":28,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",9:"pr_const",10:"pr_let",11:"pr_var",13:"pr_numero",14:"pr_bool",15:"pr_string",16:"id",17:":",18:"=",20:";",21:"+",22:"-",23:"*",24:"/",26:"expreR_numero",27:"expreR_bool",28:"expreR_cadena"},
+productions_: [0,[3,2],[4,2],[4,1],[6,1],[8,1],[8,1],[8,1],[12,1],[12,1],[12,1],[7,7],[19,3],[19,3],[19,3],[19,3],[19,1],[25,1],[25,1],[25,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -95,17 +95,38 @@ break;
 case 4:
  this.$=$$[$0];
 break;
-case 8: case 9: case 10:
+case 8: case 9: case 10: case 16:
 this.$=$$[$0];
 break;
 case 11:
 
-                this.$= new Declaracion($$[$0-3],$$[$0-1],null,_$[$0-4].first_line, _$[$0-4].first_column );
+                this.$= new Declaracion($$[$0-5],$$[$0-3],$$[$0-1],_$[$0-6].first_line, _$[$0-6].first_column );
             
+break;
+case 12:
+this.$= new Arithmetic($$[$0-2],$$[$0],ArithmeticOption.MAS, _$[$0-2].first_line, _$[$0-2].first_column);
+break;
+case 13:
+this.$= new Arithmetic($$[$0-2],$$[$0],ArithmeticOption.MENOS, _$[$0-2].first_line, _$[$0-2].first_column);
+break;
+case 14:
+this.$= new Arithmetic($$[$0-2],$$[$0],ArithmeticOption.MULTIPLICACION, _$[$0-2].first_line, _$[$0-2].first_column);
+break;
+case 15:
+this.$= new Arithmetic($$[$0-2],$$[$0],ArithmeticOption.DIV, _$[$0-2].first_line, _$[$0-2].first_column);
+break;
+case 17:
+this.$=new Literal($$[$0],Type.NUMBER , _$[$0].first_line, _$[$0].first_column)
+break;
+case 18:
+this.$=new Literal($$[$0],Type.BOOLEAN, _$[$0].first_line, _$[$0].first_column)
+break;
+case 19:
+this.$=new Literal($$[$0],Type.STRING , _$[$0].first_line, _$[$0].first_column)
 break;
 }
 },
-table: [{3:1,4:2,6:3,7:4,8:5,9:$V0,10:$V1,11:$V2},{1:[3]},{5:[1,9],6:10,7:4,8:5,9:$V0,10:$V1,11:$V2},o($V3,[2,3]),o($V3,[2,4]),{16:[1,11]},{16:[2,5]},{16:[2,6]},{16:[2,7]},{1:[2,1]},o($V3,[2,2]),{17:[1,12]},{12:13,13:[1,14],14:[1,15],15:[1,16]},{18:[1,17]},{18:[2,8]},{18:[2,9]},{18:[2,10]},o($V3,[2,11])],
+table: [{3:1,4:2,6:3,7:4,8:5,9:$V0,10:$V1,11:$V2},{1:[3]},{5:[1,9],6:10,7:4,8:5,9:$V0,10:$V1,11:$V2},o($V3,[2,3]),o($V3,[2,4]),{16:[1,11]},{16:[2,5]},{16:[2,6]},{16:[2,7]},{1:[2,1]},o($V3,[2,2]),{17:[1,12]},{12:13,13:[1,14],14:[1,15],15:[1,16]},{18:[1,17]},{18:[2,8]},{18:[2,9]},{18:[2,10]},{19:18,25:19,26:$V4,27:$V5,28:$V6},{20:[1,23],21:$V7,22:$V8,23:[1,26],24:[1,27]},o($V9,[2,16]),o($V9,[2,17]),o($V9,[2,18]),o($V9,[2,19]),o($V3,[2,11]),{19:28,25:19,26:$V4,27:$V5,28:$V6},{19:29,25:19,26:$V4,27:$V5,28:$V6},{19:30,25:19,26:$V4,27:$V5,28:$V6},{19:31,25:19,26:$V4,27:$V5,28:$V6},o($V9,[2,12]),o($V9,[2,13]),o($Va,[2,14],{21:$V7,22:$V8}),o($Va,[2,15],{21:$V7,22:$V8})],
 defaultActions: {6:[2,5],7:[2,6],8:[2,7],9:[2,1],14:[2,8],15:[2,9],16:[2,10]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
@@ -257,7 +278,11 @@ parse: function parse(input) {
 
     //codigo en JS
     //importaciones y declaraciones
-    const {Declaracion} = require('../instrucciones/declaracion')
+    const {Declaracion} = require('../instrucciones/declaracion');
+    const {Literal} = require('../expresiones/literal')
+    const {Type} = require('../symbols/type');
+    const {Arithmetic} = require('../expresiones/aritmeticas');
+    const {ArithmeticOption} = require('../expresiones/aritmeticOption');
 
     var array_erroresLexicos;
 
@@ -595,11 +620,11 @@ case 1:// comentario simple línea
 break;
 case 2:// comentario multiple líneas
 break;
-case 3:return 'expreR_numero'
+case 3:return 26
 break;
-case 4:return 'expreR_cadena'
+case 4:return 28
 break;
-case 5:return 'expreR_bool'
+case 5:return 27
 break;
 case 6:return 11
 break;
@@ -613,25 +638,33 @@ case 10:return 15
 break;
 case 11:return 14
 break;
-case 12:return 18 
+case 12:return 20 
 break;
-case 13:return '='
+case 13:return 18
 break;
 case 14:return 17 
 break;
-case 15:return 16;
+case 15:return 21 
 break;
-case 16:return 5
+case 16:return 22 
 break;
-case 17: 
+case 17:return 23 
+break;
+case 18:return 24 
+break;
+case 19:return 16;
+break;
+case 20:return 5
+break;
+case 21: 
         console.log("error lexico :"+yy_.yytext)
         //push para array errores
     
 break;
 }
 },
-rules: [/^(?:\s+)/i,/^(?:\/\/.*)/i,/^(?:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/])/i,/^(?:([0-9]+))/i,/^(?:("[^\"]*"))/i,/^(?:(true|false\b))/i,/^(?:var\b)/i,/^(?:let\b)/i,/^(?:const\b)/i,/^(?:numero\b)/i,/^(?:string\b)/i,/^(?:bool\b)/i,/^(?:;)/i,/^(?:=)/i,/^(?::)/i,/^(?:[a-zA-ZñÑ][a-zA-Z0-9_ñÑ]*)/i,/^(?:$)/i,/^(?:.)/i],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],"inclusive":true}}
+rules: [/^(?:\s+)/i,/^(?:\/\/.*)/i,/^(?:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/])/i,/^(?:([0-9]+))/i,/^(?:("[^\"]*"))/i,/^(?:(true|false\b))/i,/^(?:var\b)/i,/^(?:let\b)/i,/^(?:const\b)/i,/^(?:numero\b)/i,/^(?:string\b)/i,/^(?:bool\b)/i,/^(?:;)/i,/^(?:=)/i,/^(?::)/i,/^(?:\+)/i,/^(?:-)/i,/^(?:\*)/i,/^(?:\/)/i,/^(?:[a-zA-ZñÑ][a-zA-Z0-9_ñÑ]*)/i,/^(?:$)/i,/^(?:.)/i],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],"inclusive":true}}
 });
 return lexer;
 })();

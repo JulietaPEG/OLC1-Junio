@@ -2,7 +2,11 @@
 
     //codigo en JS
     //importaciones y declaraciones
-    const {Declaracion} = require('../instrucciones/declaracion')
+    const {Declaracion} = require('../instrucciones/declaracion');
+    const {Literal} = require('../expresiones/literal')
+    const {Type} = require('../symbols/type');
+    const {Arithmetic} = require('../expresiones/aritmeticas');
+    const {ArithmeticOption} = require('../expresiones/aritmeticOption');
 
     var array_erroresLexicos;
 
@@ -52,6 +56,10 @@ bool    "true"|"false"
 ";" return ';' 
 "=" return '='
 ":" return ':' 
+"+" return '+' 
+"-" return '-' 
+"*" return '*' 
+"/" return '/' 
 
 
 
@@ -67,6 +75,8 @@ bool    "true"|"false"
 
 /lex 
 
+%left '*' '/'
+%left '+' '-'
 
 %start INIT
 
@@ -93,11 +103,23 @@ TIPODATO_DECLARACION  :  'pr_numero' {$$=$1;}
                        | 'pr_string' {$$=$1;}
                        ; 
 
-DECLARACION : TIPO_DECLARACION 'id' ':' TIPODATO_DECLARACION ';' 
+DECLARACION : TIPO_DECLARACION 'id' ':' TIPODATO_DECLARACION '=' E ';' 
             {
-                $$= new Declaracion($2,$4,null,@1.first_line, @1.first_column );
+                $$= new Declaracion($2,$4,$6,@1.first_line, @1.first_column );
             }
             ;
 
+
+E: E '+' E  {$$= new Arithmetic($1,$3,ArithmeticOption.MAS, @1.first_line, @1.first_column);}
+|  E '-' E  {$$= new Arithmetic($1,$3,ArithmeticOption.MENOS, @1.first_line, @1.first_column);}  
+|  E '*' E  {$$= new Arithmetic($1,$3,ArithmeticOption.MULTIPLICACION, @1.first_line, @1.first_column);}
+|  E '/' E  {$$= new Arithmetic($1,$3,ArithmeticOption.DIV, @1.first_line, @1.first_column);}
+|  F    {$$=$1;}
+;
+
+F: expreR_numero   {$$=new Literal($1,Type.NUMBER , @1.first_line, @1.first_column)}
+    |expreR_bool   {$$=new Literal($1,Type.BOOLEAN, @1.first_line, @1.first_column)}
+    |expreR_cadena {$$=new Literal($1,Type.STRING , @1.first_line, @1.first_column)}
+;
 
 
