@@ -16,7 +16,7 @@ export class Environment {
   public guardar_variable(nombre: string, valor: any, type: Type): boolean {
     
     if(!this.buscar_variable(nombre)){
-      this.tablaSimbolos.set(nombre, new Symbol(valor, nombre, type));
+      this.tablaSimbolos.set(nombre, new Symbol(valor, nombre, type,true));
       return true
     }
     console.log("esta variable ["+nombre+"] ya existe...");

@@ -7,7 +7,8 @@
     const {Type} = require('../symbols/type');
     const {Arithmetic} = require('../expresiones/aritmeticas');
     const {ArithmeticOption} = require('../expresiones/aritmeticOption');
-
+    const {Bloque} = require('../instrucciones/Env')
+    const {Imprimir} = require('../instrucciones/imprimir')
     var array_erroresLexicos;
 
 %}
@@ -49,6 +50,7 @@ bool    "true"|"false"
 "numero" return 'pr_numero'
 "string" return 'pr_string'
 "bool" return 'pr_bool'
+"print" return 'pr_print'
 
 
 //simbolos
@@ -60,6 +62,11 @@ bool    "true"|"false"
 "-" return '-' 
 "*" return '*' 
 "/" return '/' 
+
+"{" return '{' 
+"}" return '}' 
+")" return ')' 
+"(" return '(' 
 
 
 
@@ -95,7 +102,18 @@ INSTRUCCIONES :   INSTRUCCIONES INSTRUCCION { $1.push($2); $$=$1;}
               ;
 
 
-INSTRUCCION : DECLARACION   { $$=$1;} ;
+INSTRUCCION : DECLARACION   { $$=$1; } 
+            | BLOQUE        { $$=$1; } 
+            | IMPRIMIR      { $$=$1; } 
+            | error    ';'  { console.log("Error sintactico en la linea"); }
+;
+
+IMPRIMIR : 'pr_print' '(' E ')' ';' { $$= new Imprimir($3,@1.first_line, @1.first_column);}
+;
+
+
+BLOQUE: '{' INSTRUCCIONES  '}'  {$$= new Bloque($2,@1.first_line, @1.first_column)}
+;
 
 TIPO_DECLARACION: 'pr_const' |'pr_let' | 'pr_var' ; 
 TIPODATO_DECLARACION  :  'pr_numero' {$$=$1;}  
