@@ -105,7 +105,8 @@ INSTRUCCIONES :   INSTRUCCIONES INSTRUCCION { $1.push($2); $$=$1;}
 INSTRUCCION : DECLARACION   { $$=$1; } 
             | BLOQUE        { $$=$1; } 
             | IMPRIMIR      { $$=$1; } 
-            | error    ';'  { console.log("Error sintactico en la linea"); }
+
+            | error    ';'  { console.log("Error sintactico en la linea"+(yylineno+1)); }
 ;
 
 IMPRIMIR : 'pr_print' '(' E ')' ';' { $$= new Imprimir($3,@1.first_line, @1.first_column);}

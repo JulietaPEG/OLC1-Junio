@@ -96,7 +96,7 @@ case 4: case 5: case 6:
  this.$=$$[$0]; 
 break;
 case 7:
- console.log("Error sintactico en la linea"); 
+ console.log("Error sintactico en la linea"+(yylineno+1)); 
 break;
 case 8:
  this.$= new Imprimir($$[$0-2],_$[$0-4].first_line, _$[$0-4].first_column);

@@ -8,7 +8,7 @@ try {
     const ast= parser.parse(entrada.toString());
     const env_padre = new Environment(null);
     //aqui analisis semantico
-    console.log(ast);    
+    //console.log(ast);    
 
     for (const elemento  of ast) {
         try {

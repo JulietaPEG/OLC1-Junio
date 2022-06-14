@@ -17,6 +17,7 @@
     }
     
     
+    var nuevaTres_dos: string 50-5;
 
     
 

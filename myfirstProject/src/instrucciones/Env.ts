@@ -32,7 +32,7 @@ export class Bloque extends Instruccion {
                 
                 elemento.executar(new_env)
             } catch (error) {
-                console.log(error);
+                //console.log(error);
                 
             }
         }
