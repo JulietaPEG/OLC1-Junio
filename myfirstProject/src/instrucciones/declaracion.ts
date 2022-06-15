@@ -25,6 +25,13 @@ export class Declaracion extends Instruccion {
         
 
         //preguntar si la variable esta libre
+
+        if(env.buscar_variable(this.nombre)){
+            //error semenaticos
+            throw "Error semantico, la variable ya existe, y no se puede repetir en esta ts"
+        }
+
+
         //si los tipos son correctos o hacen match
 
         // if(x.type==){

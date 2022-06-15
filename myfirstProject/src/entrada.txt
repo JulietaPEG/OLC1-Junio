@@ -12,7 +12,16 @@
 
     {
          //tabla simbolos 2
-        var variable_nuevo_bloque: string=50-5; 
+        var variable_nuevo_bloque: string=50-5;
+         var nuevaTres: string=50+5; 
+        //primir desde este env osea una ts nueva
+        print(variable_nuevo_bloque);
+        print("variable de otra ts : "+nuevaUno);
+        print(nuevaTres);
+
+
+
+
         
     }
     
@@ -20,7 +29,8 @@
     var nuevaTres_dos: string 50-5;
 
     
-
+    print("la variable nuevaUno tiene el valor de: "+nuevaUno);
+    print(nuevaUno+nuevaUno+2);
     print(15+6);
     print("si sale"+ " compi");
 

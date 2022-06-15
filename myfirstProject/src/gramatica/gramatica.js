@@ -72,12 +72,12 @@
   }
 */
 var gramatica = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[1,10],$V2=[1,9],$V3=[1,11],$V4=[1,12],$V5=[1,13],$V6=[2,5,11,15,16,18,19,20],$V7=[1,24],$V8=[1,25],$V9=[1,26],$Va=[1,32],$Vb=[1,33],$Vc=[1,34],$Vd=[1,35],$Ve=[10,14,28,29,30,31],$Vf=[10,14,30,31];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,7],$V1=[1,10],$V2=[1,9],$V3=[1,11],$V4=[1,12],$V5=[1,13],$V6=[2,5,11,15,16,18,19,20],$V7=[1,23],$V8=[1,25],$V9=[1,26],$Va=[1,27],$Vb=[1,33],$Vc=[1,34],$Vd=[1,35],$Ve=[1,36],$Vf=[10,14,28,29,30,31],$Vg=[10,14,30,31];
 var parser = {trace: function trace () { },
 yy: {},
 symbols_: {"error":2,"INIT":3,"INSTRUCCIONES":4,"EOF":5,"INSTRUCCION":6,"DECLARACION":7,"BLOQUE":8,"IMPRIMIR":9,";":10,"pr_print":11,"(":12,"E":13,")":14,"{":15,"}":16,"TIPO_DECLARACION":17,"pr_const":18,"pr_let":19,"pr_var":20,"TIPODATO_DECLARACION":21,"pr_numero":22,"pr_bool":23,"pr_string":24,"id":25,":":26,"=":27,"+":28,"-":29,"*":30,"/":31,"F":32,"expreR_numero":33,"expreR_bool":34,"expreR_cadena":35,"$accept":0,"$end":1},
 terminals_: {2:"error",5:"EOF",10:";",11:"pr_print",12:"(",14:")",15:"{",16:"}",18:"pr_const",19:"pr_let",20:"pr_var",22:"pr_numero",23:"pr_bool",24:"pr_string",25:"id",26:":",27:"=",28:"+",29:"-",30:"*",31:"/",33:"expreR_numero",34:"expreR_bool",35:"expreR_cadena"},
-productions_: [0,[3,2],[4,2],[4,1],[6,1],[6,1],[6,1],[6,2],[9,5],[8,3],[17,1],[17,1],[17,1],[21,1],[21,1],[21,1],[7,7],[13,3],[13,3],[13,3],[13,3],[13,1],[32,1],[32,1],[32,1]],
+productions_: [0,[3,2],[4,2],[4,1],[6,1],[6,1],[6,1],[6,2],[9,5],[8,3],[17,1],[17,1],[17,1],[21,1],[21,1],[21,1],[7,7],[13,3],[13,3],[13,3],[13,3],[13,1],[13,1],[32,1],[32,1],[32,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -96,7 +96,10 @@ case 4: case 5: case 6:
  this.$=$$[$0]; 
 break;
 case 7:
- console.log("Error sintactico en la linea"+(yylineno+1)); 
+ 
+                //get instance
+                //meterlo
+                console.log("Error sintactico en la linea"+(yylineno+1)); 
 break;
 case 8:
  this.$= new Imprimir($$[$0-2],_$[$0-4].first_line, _$[$0-4].first_column);
@@ -104,7 +107,7 @@ break;
 case 9:
 this.$= new Bloque($$[$0-1],_$[$0-2].first_line, _$[$0-2].first_column)
 break;
-case 13: case 14: case 15: case 21:
+case 13: case 14: case 15: case 22:
 this.$=$$[$0];
 break;
 case 16:
@@ -124,19 +127,22 @@ break;
 case 20:
 this.$= new Arithmetic($$[$0-2],$$[$0],ArithmeticOption.DIV, _$[$0-2].first_line, _$[$0-2].first_column);
 break;
-case 22:
-this.$=new Literal($$[$0],Type.NUMBER , _$[$0].first_line, _$[$0].first_column)
+case 21:
+this.$= new Acceso($$[$0],_$[$0].first_line, _$[$0].first_column);
 break;
 case 23:
-this.$=new Literal($$[$0],Type.BOOLEAN, _$[$0].first_line, _$[$0].first_column)
+this.$=new Literal($$[$0],Type.NUMBER , _$[$0].first_line, _$[$0].first_column)
 break;
 case 24:
+this.$=new Literal($$[$0],Type.BOOLEAN, _$[$0].first_line, _$[$0].first_column)
+break;
+case 25:
 this.$=new Literal($$[$0],Type.STRING , _$[$0].first_line, _$[$0].first_column)
 break;
 }
 },
-table: [{2:$V0,3:1,4:2,6:3,7:4,8:5,9:6,11:$V1,15:$V2,17:8,18:$V3,19:$V4,20:$V5},{1:[3]},{2:$V0,5:[1,14],6:15,7:4,8:5,9:6,11:$V1,15:$V2,17:8,18:$V3,19:$V4,20:$V5},o($V6,[2,3]),o($V6,[2,4]),o($V6,[2,5]),o($V6,[2,6]),{10:[1,16]},{25:[1,17]},{2:$V0,4:18,6:3,7:4,8:5,9:6,11:$V1,15:$V2,17:8,18:$V3,19:$V4,20:$V5},{12:[1,19]},{25:[2,10]},{25:[2,11]},{25:[2,12]},{1:[2,1]},o($V6,[2,2]),o($V6,[2,7]),{26:[1,20]},{2:$V0,6:15,7:4,8:5,9:6,11:$V1,15:$V2,16:[1,21],17:8,18:$V3,19:$V4,20:$V5},{13:22,32:23,33:$V7,34:$V8,35:$V9},{21:27,22:[1,28],23:[1,29],24:[1,30]},o($V6,[2,9]),{14:[1,31],28:$Va,29:$Vb,30:$Vc,31:$Vd},o($Ve,[2,21]),o($Ve,[2,22]),o($Ve,[2,23]),o($Ve,[2,24]),{27:[1,36]},{27:[2,13]},{27:[2,14]},{27:[2,15]},{10:[1,37]},{13:38,32:23,33:$V7,34:$V8,35:$V9},{13:39,32:23,33:$V7,34:$V8,35:$V9},{13:40,32:23,33:$V7,34:$V8,35:$V9},{13:41,32:23,33:$V7,34:$V8,35:$V9},{13:42,32:23,33:$V7,34:$V8,35:$V9},o($V6,[2,8]),o($Ve,[2,17]),o($Ve,[2,18]),o($Vf,[2,19],{28:$Va,29:$Vb}),o($Vf,[2,20],{28:$Va,29:$Vb}),{10:[1,43],28:$Va,29:$Vb,30:$Vc,31:$Vd},o($V6,[2,16])],
-defaultActions: {11:[2,10],12:[2,11],13:[2,12],14:[2,1],28:[2,13],29:[2,14],30:[2,15]},
+table: [{2:$V0,3:1,4:2,6:3,7:4,8:5,9:6,11:$V1,15:$V2,17:8,18:$V3,19:$V4,20:$V5},{1:[3]},{2:$V0,5:[1,14],6:15,7:4,8:5,9:6,11:$V1,15:$V2,17:8,18:$V3,19:$V4,20:$V5},o($V6,[2,3]),o($V6,[2,4]),o($V6,[2,5]),o($V6,[2,6]),{10:[1,16]},{25:[1,17]},{2:$V0,4:18,6:3,7:4,8:5,9:6,11:$V1,15:$V2,17:8,18:$V3,19:$V4,20:$V5},{12:[1,19]},{25:[2,10]},{25:[2,11]},{25:[2,12]},{1:[2,1]},o($V6,[2,2]),o($V6,[2,7]),{26:[1,20]},{2:$V0,6:15,7:4,8:5,9:6,11:$V1,15:$V2,16:[1,21],17:8,18:$V3,19:$V4,20:$V5},{13:22,25:$V7,32:24,33:$V8,34:$V9,35:$Va},{21:28,22:[1,29],23:[1,30],24:[1,31]},o($V6,[2,9]),{14:[1,32],28:$Vb,29:$Vc,30:$Vd,31:$Ve},o($Vf,[2,21]),o($Vf,[2,22]),o($Vf,[2,23]),o($Vf,[2,24]),o($Vf,[2,25]),{27:[1,37]},{27:[2,13]},{27:[2,14]},{27:[2,15]},{10:[1,38]},{13:39,25:$V7,32:24,33:$V8,34:$V9,35:$Va},{13:40,25:$V7,32:24,33:$V8,34:$V9,35:$Va},{13:41,25:$V7,32:24,33:$V8,34:$V9,35:$Va},{13:42,25:$V7,32:24,33:$V8,34:$V9,35:$Va},{13:43,25:$V7,32:24,33:$V8,34:$V9,35:$Va},o($V6,[2,8]),o($Vf,[2,17]),o($Vf,[2,18]),o($Vg,[2,19],{28:$Vb,29:$Vc}),o($Vg,[2,20],{28:$Vb,29:$Vc}),{10:[1,44],28:$Vb,29:$Vc,30:$Vd,31:$Ve},o($V6,[2,16])],
+defaultActions: {11:[2,10],12:[2,11],13:[2,12],14:[2,1],29:[2,13],30:[2,14],31:[2,15]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -392,6 +398,7 @@ _handle_error:
     const {Literal} = require('../expresiones/literal')
     const {Type} = require('../symbols/type');
     const {Arithmetic} = require('../expresiones/aritmeticas');
+    const {Acceso} = require('../expresiones/Acceso');
     const {ArithmeticOption} = require('../expresiones/aritmeticOption');
     const {Bloque} = require('../instrucciones/Env')
     const {Imprimir} = require('../instrucciones/imprimir')
@@ -778,6 +785,8 @@ break;
 case 25:return 5
 break;
 case 26: 
+        //llamada al singleton con getinstance
+        // variable.add_error("kfdsa")
         console.log("error lexico :"+yy_.yytext)
         //push para array errores
     

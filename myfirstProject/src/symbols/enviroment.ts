@@ -42,5 +42,15 @@ export class Environment {
       }
   }
   }
+
+
+  public get_variable(nombre: string): Symbol | undefined | null {
+    let env: Environment | null = this;
+    while (env != null) {
+        if (env.tablaSimbolos.has(nombre)) return env.tablaSimbolos.get(nombre);
+        env = env.anterior;
+    }
+    return null;
+}
   
 }

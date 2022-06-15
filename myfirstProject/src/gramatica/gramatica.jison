@@ -6,6 +6,7 @@
     const {Literal} = require('../expresiones/literal')
     const {Type} = require('../symbols/type');
     const {Arithmetic} = require('../expresiones/aritmeticas');
+    const {Acceso} = require('../expresiones/Acceso');
     const {ArithmeticOption} = require('../expresiones/aritmeticOption');
     const {Bloque} = require('../instrucciones/Env')
     const {Imprimir} = require('../instrucciones/imprimir')
@@ -76,6 +77,8 @@ bool    "true"|"false"
 <<EOF>>		            return 'EOF'
 
 .   { 
+        //llamada al singleton con getinstance
+        // variable.add_error("kfdsa")
         console.log("error lexico :"+yytext)
         //push para array errores
     }
@@ -106,7 +109,10 @@ INSTRUCCION : DECLARACION   { $$=$1; }
             | BLOQUE        { $$=$1; } 
             | IMPRIMIR      { $$=$1; } 
 
-            | error    ';'  { console.log("Error sintactico en la linea"+(yylineno+1)); }
+            | error    ';'  { 
+                //get instance
+                //meterlo
+                console.log("Error sintactico en la linea"+(yylineno+1)); }
 ;
 
 IMPRIMIR : 'pr_print' '(' E ')' ';' { $$= new Imprimir($3,@1.first_line, @1.first_column);}
@@ -133,6 +139,7 @@ E: E '+' E  {$$= new Arithmetic($1,$3,ArithmeticOption.MAS, @1.first_line, @1.fi
 |  E '-' E  {$$= new Arithmetic($1,$3,ArithmeticOption.MENOS, @1.first_line, @1.first_column);}  
 |  E '*' E  {$$= new Arithmetic($1,$3,ArithmeticOption.MULTIPLICACION, @1.first_line, @1.first_column);}
 |  E '/' E  {$$= new Arithmetic($1,$3,ArithmeticOption.DIV, @1.first_line, @1.first_column);}
+|  'id'     {$$= new Acceso($1,@1.first_line, @1.first_column);}
 |  F    {$$=$1;}
 ;
 
